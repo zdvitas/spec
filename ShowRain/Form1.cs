@@ -61,7 +61,9 @@ namespace ShowRain
 
             // рисуем сферу с помощью библиотеки FreeGLUT 
             Glut.glutWireSphere(2, 32, 32);
+            // Тест ветвления
 
+            MessageBox.Show("Тест!!");
             Gl.glPopMatrix();
             Gl.glFlush();
             AnT.Invalidate();
