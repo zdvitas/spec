@@ -3,30 +3,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-
-//using System.Linq;
+using System.Linq;
 using System.Text;
-//using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
-// для работы с библиотекой OpenGL 
 using Tao.OpenGl;
-// для работы с библиотекой FreeGLUT 
 using Tao.FreeGlut;
-// для работы с элементом управления SimpleOpenGLControl 
 using Tao.Platform.Windows;
+using SnowRain;
 
 namespace ShowRain
 {
+
+    
     public partial class Form1 : Form
     {
-
+        private bool paused = false;
         Camera cam = new Camera();
-
+        Draw draw;
+        float curTime = 0f;
+        public int mouseMoveZ = 0;
+        public int mouseMoveX = 0;
+        public int mouseMoveY = 0;
+        
         public Form1()
         {
             InitializeComponent();
             AnT.InitializeContexts();
+            
         }
 
 
@@ -34,9 +39,18 @@ namespace ShowRain
         {
             Glut.glutInit();
             Glut.glutInitDisplayMode(Glut.GLUT_RGB | Glut.GLUT_DOUBLE | Glut.GLUT_DEPTH);
+            float[] ambient = {0.5f, 0.5f, 0.5f, 1f};
+
+            Gl.glEnable(Gl.GL_LIGHTING);
+            Gl.glLightModelfv(Gl.GL_LIGHT_MODEL_AMBIENT, ambient);
+            Gl.glLightModeli(Gl.GL_LIGHT_MODEL_TWO_SIDE, Gl.GL_TRUE);
+            Gl.glEnable(Gl.GL_LIGHT0);
+
+            float[] pos = {3f,3f,3f,0};
+            Gl.glLightfv(Gl.GL_LIGHT0, Gl.GL_POSITION, pos);
 
             Gl.glClearColor(255, 255, 255, 1);
-
+            
             Gl.glViewport(0, 0, AnT.Width, AnT.Height);
 
             Gl.glMatrixMode(Gl.GL_PROJECTION);
@@ -57,8 +71,10 @@ namespace ShowRain
             Gl.glEnable(Gl.GL_LINE_SMOOTH);
             Gl.glLineWidth(1.0f);
 
-            cam.Position_Camera(0, 6, -15, 0, 3, 0, 0, 1, 0); //Вот тут в инициализации
+            cam.Position_Camera(15, 10, -15, 0, 3, 0, 0, 1, 0); //Вот тут в инициализации
             //укажем начальную позицию камеры,взгляда и вертикального вектора.
+
+            draw = new Draw();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -79,7 +95,7 @@ namespace ShowRain
             Gl.glPushMatrix();
 
             DrawGrid(30, 1);//Нарисуем сетку
-
+            draw.Do(curTime);
             Gl.glPopMatrix();
 
             Gl.glFlush();
@@ -95,26 +111,6 @@ namespace ShowRain
             float[] MatrixColorOZ = { 0, 0, 1, 1 };
             float[] MatrixOXOYColor = { 0, 0, 1, 1 };
             //x - количество или длина сетки, quad_size - размер клетки
-            Gl.glPushMatrix(); //Рисуем оси координат, цвет объявлен в самом начале
-            Gl.glMaterialfv(Gl.GL_FRONT, Gl.GL_AMBIENT_AND_DIFFUSE, MatrixColorOX);
-            Gl.glTranslated((-x * 2) / 2, 0, 0);
-            Gl.glRotated(90, 0, 1, 0);
-            Glut.glutSolidCylinder(0.02, x * 2, 12, 12);
-            Gl.glPopMatrix();
-
-            Gl.glPushMatrix();
-            Gl.glMaterialfv(Gl.GL_FRONT, Gl.GL_AMBIENT_AND_DIFFUSE, MatrixColorOZ);
-            Gl.glTranslated(0, 0, (-x * 2) / 2);
-            Glut.glutSolidCylinder(0.02, x * 2, 12, 12);
-            Gl.glPopMatrix();
-
-            Gl.glPushMatrix();
-            Gl.glMaterialfv(Gl.GL_FRONT, Gl.GL_AMBIENT_AND_DIFFUSE, MatrixColorOY);
-            Gl.glTranslated(0, x / 2, 0);
-            Gl.glRotated(90, 1, 0, 0);
-            Glut.glutSolidCylinder(0.02, x, 12, 12);
-            Gl.glPopMatrix();
-
             Gl.glBegin(Gl.GL_LINES);
 
             Gl.glMaterialfv(Gl.GL_FRONT, Gl.GL_AMBIENT_AND_DIFFUSE, MatrixOXOYColor);
@@ -137,7 +133,8 @@ namespace ShowRain
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-           
+            paused = true;
+
         }
 
         bool mouseRotate, mouseMove = false;
@@ -202,14 +199,48 @@ namespace ShowRain
                     AnT.Cursor = System.Windows.Forms.Cursors.Default;//возвращаем курсор
                 };
             };
+
+            if(mouseMoveZ!=0)
+            {
+                cam.MoveUpDown(mouseMoveZ * 0.5f);
+            }
+
         }
+
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             mouse_Events();
+            curTime = (float)timer1.Interval / 1000;
             cam.update();
-            Draw();
+            if (!paused)
+            {
+                Draw();
+            }
+            Log.Lines = cam.GetStatus();
         }
+
+        private void AnT_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.W)
+                mouseMoveZ = -1;
+            if(e.KeyCode == Keys.S)
+                mouseMoveZ = 1;
+            
+        }
+
+        private void AnT_KeyUp(object sender, KeyEventArgs e)
+        {
+            mouseMoveZ = 0;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            paused = false;
+        }
+
+
         
     }
 }

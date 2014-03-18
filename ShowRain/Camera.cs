@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Attr;
 
 
 // для работы с библиотекой OpenGL 
@@ -14,10 +15,7 @@ using Tao.Platform.Windows;
 
 namespace ShowRain
 {
-    public struct Vector3D
-    {
-        public float x, y, z;
-    }
+
 
 
     class Camera
@@ -168,6 +166,21 @@ namespace ShowRain
             mView.z += vVector.z * speed;
         }
 
+        public void MoveUpDown(float speed)
+        {
+            Vector3D vVector; //Получаем вектор взгляда
+            vVector.x = mView.x - mPos.x;
+            vVector.y = mView.y - mPos.y;
+            vVector.z = mView.z - mPos.z;
+
+            vVector.x = 0.0f;
+            vVector.z = 0.0f; 
+            vVector = Normalize(vVector);
+
+            mPos.y += vVector.y * speed;
+            mView.y += vVector.y * speed;
+        }
+
         public void Strafe(float speed)
         {
             // добавим вектор стрейфа к позиции
@@ -229,6 +242,19 @@ namespace ShowRain
         public double getViewZ() //Возвращает позицию взгляда по Z
         {
             return mView.z;
+        }
+
+        public string[] GetStatus()
+        {
+            var rez = new string[6];
+            rez[0] = "X = " + getPosX().ToString();
+            rez[1] = "Y = " + getPosY().ToString();
+            rez[2] = "Z = " + getPosZ().ToString();
+
+            rez[3] = "X pos = " + getViewX().ToString();
+            rez[4] = "Y pos = " + getViewY().ToString();
+            rez[5] = "Z pos = " + getViewZ().ToString();
+            return rez;
         }
 
     }
