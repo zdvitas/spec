@@ -18,7 +18,7 @@ namespace SnowRain
         public Point3D position = new Point3D();
         public Vector3D rotation;
         public float rot_angle;
-        private float[] color;
+        private float[] color = { 0.5f, 0.5f, 0.5f, 1 };
         public float radius;
         public float height;
         public Cylinder(float[] color)
@@ -29,6 +29,18 @@ namespace SnowRain
         public Cylinder()
         {
             rot_angle = 0;
+           
+        }
+
+        public void DrawCylPoligons()
+        {
+            Gl.glBegin(Gl.GL_QUADS);
+            Gl.glVertex3f(-1.0f, 1.0f, 0.0f);  // Слева вверху
+            Gl.glVertex3f(1.0f, 1.0f, 0.0f);  // Справа вверху
+            Gl.glVertex3f(1.0f, -1.0f, 0.0f);  // Справа внизу
+            Gl.glVertex3f(-1.0f, -1.0f, 0.0f);  // Слева внизу
+            Gl.glEnd();
+            return;
         }
 
         public void Draw()
@@ -38,7 +50,7 @@ namespace SnowRain
             Gl.glMaterialfv(Gl.GL_FRONT, Gl.GL_AMBIENT_AND_DIFFUSE, color);
             Gl.glTranslated(position.x, position.y, position.z);
             Gl.glRotated(rot_angle, rotation.x, rotation.y, rotation.z);
-            Glut.glutSolidCylinder( radius, height, 12, 12);
+            Glut.glutSolidCylinder( radius, height, 6, 6);
             Gl.glPopMatrix(); 
             float[] MatrixColorOX = { 1, 0, 0, 1 };
             

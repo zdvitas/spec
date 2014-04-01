@@ -12,12 +12,13 @@ namespace SnowRain
 
         // Attributes and properties
         public Point3D position;
-        private float[] color = { 0.5f, 0.5f, 0.5f, 1 };
+        private float[] color = { 1f, 0.3f, 0f, 1 };
         // Associations 
         private Cylinder[] cyls = new Cylinder[2] ;
 
         public Tower(int index)
         {
+            color[0] = index == -1 ? 0 : 0.5f;
             cyls[0] = new Cylinder(color);
             cyls[0].radius = .3f;
             cyls[0].height = 20;
@@ -37,3 +38,4 @@ namespace SnowRain
     }
 }
 
+ 

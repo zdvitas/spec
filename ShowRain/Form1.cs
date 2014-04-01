@@ -49,7 +49,7 @@ namespace ShowRain
             float[] pos = {3f,3f,3f,0};
             Gl.glLightfv(Gl.GL_LIGHT0, Gl.GL_POSITION, pos);
 
-            Gl.glClearColor(255, 255, 255, 1);
+            Gl.glClearColor(0, 0, 0, 1);
             
             Gl.glViewport(0, 0, AnT.Width, AnT.Height);
 
@@ -95,7 +95,7 @@ namespace ShowRain
             Gl.glPushMatrix();
 
             DrawGrid(30, 1);//Нарисуем сетку
-            draw.Do(curTime);
+            draw.Do(curTime,paused);
             Gl.glPopMatrix();
 
             Gl.glFlush();
@@ -106,10 +106,8 @@ namespace ShowRain
 
         private void DrawGrid(int x, float quad_size)
         {
-            float[] MatrixColorOX = { 1, 0, 0, 1 };
-            float[] MatrixColorOY = { 0, 1, 0, 1 };
-            float[] MatrixColorOZ = { 0, 0, 1, 1 };
-            float[] MatrixOXOYColor = { 0, 0, 1, 1 };
+
+            float[] MatrixOXOYColor = { 1, 1, 1, 1 };
             //x - количество или длина сетки, quad_size - размер клетки
             Gl.glBegin(Gl.GL_LINES);
 
@@ -214,10 +212,7 @@ namespace ShowRain
             mouse_Events();
             curTime = (float)timer1.Interval / 1000;
             cam.update();
-            if (!paused)
-            {
-                Draw();
-            }
+            Draw();
             Log.Lines = cam.GetStatus();
         }
 
@@ -238,6 +233,13 @@ namespace ShowRain
         private void button2_Click(object sender, EventArgs e)
         {
             paused = false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            System.Drawing.Graphics graph = pictureBox1.CreateGraphics();
+            Pen pen = new Pen(Color.Black);
+            graph.DrawLine(pen, 0, 0, 90, 90);
         }
 
 

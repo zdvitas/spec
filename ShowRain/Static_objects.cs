@@ -12,6 +12,10 @@ namespace SnowRain
 
         // Attributes and properties
         public List<Static_object> Objects;
+        public Ice ice;
+        public Wire wire = new Wire();
+
+        
 
         public  Static_objects()
         {
@@ -20,12 +24,17 @@ namespace SnowRain
             Objects.Add(new Tower(-1));
         }
 
+       
+
+
         public void Draw()
         {
             foreach(var obj in Objects)
             {
                 obj.Draw();
             }
+           // ice.Draw();
+            wire.Draw();
         }
     }
 }

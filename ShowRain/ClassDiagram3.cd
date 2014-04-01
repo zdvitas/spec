@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Attr.Point3D" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAgAAAAAAAAABgAQAAAAA=</HashCode>
+      <FileName>Attr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="ShowRain.Camera" Collapsed="true">
     <Position X="7.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
@@ -10,19 +17,12 @@
   <Class Name="ShowRain.Form1" Collapsed="true">
     <Position X="7.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>oKQABQEOICAAAgAAAAOQAAASAIgYIFwgAKQAAAAAAAQ=</HashCode>
+      <HashCode>oKQABQEOICAAAgAAAAOQAAASAIg4IFwgALQAAAAAIAQ=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ShowRain.Partilce" Collapsed="true">
-    <Position X="11.25" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAIAIACABACCAAAAAIBAAEAMAAQABAAAAAAIAAAQ=</HashCode>
-      <FileName>Partilce.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="ShowRain.Program" Collapsed="true">
-    <Position X="13" Y="1.5" Width="1.5" />
+    <Position X="7.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
@@ -50,16 +50,19 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SnowRain.Ice" Collapsed="true">
-    <Position X="9.5" Y="1.5" Width="1.5" />
+    <Position X="0.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAEAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Ice.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SnowRain.Ice_particle" Collapsed="true">
-    <Position X="0.75" Y="1.75" Width="1.5" />
+  <Class Name="SnowRain.Ice_particle">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Ice_particle.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -78,49 +81,49 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SnowRain.Scene" Collapsed="true">
-    <Position X="9.5" Y="2.5" Width="1.5" />
+    <Position X="11.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAEAAgAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAEAAgAAAEAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Scene.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SnowRain.Snow_particle" Collapsed="true">
     <Position X="5.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAACAAAAAAAAAAAAMAAQABAABgAQIAAAQ=</HashCode>
+      <HashCode>AAAAAIAAAAAAACAAAAAAAAAAAAMAAQAAAABgAQIAAAA=</HashCode>
       <FileName>Snow_particle.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SnowRain.Snow_System" Collapsed="true">
-    <Position X="13" Y="2.5" Width="1.5" />
+    <Position X="7.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAYAAIAAACAAAgAAgIAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAYBAIAAACAAAgAAgIAEAACAAAACAAAAAABgAQAAAAA=</HashCode>
       <FileName>Snow_System.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SnowRain.SPH_Water_System" Collapsed="true">
-    <Position X="7.75" Y="3.5" Width="1.5" />
+    <Position X="9.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SPH_Water_System.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SnowRain.Static_object" Collapsed="true">
-    <Position X="1.75" Y="4.5" Width="1.5" />
+    <Position X="3.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Static_object.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SnowRain.Static_objects" Collapsed="true">
-    <Position X="9.5" Y="3.5" Width="1.5" />
+    <Position X="1.75" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <HashCode>AABAAAAAAAAAAgAAAAAAAAAAAAAAAAEAAAAAAAAACAA=</HashCode>
       <FileName>Static_objects.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SnowRain.Tower" Collapsed="true">
-    <Position X="2.75" Y="5.75" Width="1.5" />
+    <Position X="4.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAgAAAAAAIAAAAAAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>Tower.cs</FileName>
@@ -134,26 +137,26 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SnowRain.Wire" Collapsed="true">
-    <Position X="0.5" Y="5.75" Width="1.5" />
+    <Position X="2.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAABAAAAAAgAAAAAAAIABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>QAAAAAAAAIAAAgAAAEAAAIABAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wire.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ShowRain.Properties.Resources" Collapsed="true">
-    <Position X="7.75" Y="2.5" Width="1.5" />
+    <Position X="9.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="ShowRain.Properties.Settings" Collapsed="true">
-    <Position X="11.25" Y="2.5" Width="1.5" />
+    <Position X="13" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Struct Name="Attr.Vector3D" Collapsed="true">
-    <Position X="9.5" Y="4.75" Width="1.5" />
+    <Position X="7.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAQAAAAA=</HashCode>
       <FileName>Attr.cs</FileName>

@@ -12,9 +12,16 @@ namespace SnowRain
         // Attributes and properties
         public List<Ice_particle> parts;
 
-        // Associations 
-        private Ice_particle unnamed_11;
+      
+        public Ice()
+        {
 
+        }
+
+        internal void Draw()
+        {
+            return;
+        }
     }
 }
 

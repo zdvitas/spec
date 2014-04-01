@@ -24,6 +24,8 @@ namespace SnowRain
         private const float y = 30;
         private const float z = 50;
 
+        private float size = 2f;
+
         public Snow_System()
         {
             snows = new List<Snow_particle>();
@@ -48,21 +50,48 @@ namespace SnowRain
             }
         }
 
-        private void Update(float CurTime)
+        public void UpdateOnly(float CurTime)
         {
-
-            int randCount = rand.Next(1, 40);
+              int randCount = rand.Next(1, 40);
             Add(randCount);
 
             for(int i = 0; i < snows.Count ; i ++)
             {
                 snows[i].UpdatePosition(CurTime);
-                
+                if(snows[i].GetPositionY() < 0)
+                {
+                    snows.RemoveAt(i);
+                }
+            }
+        }
 
+        public void DrawOnly()
+        {
+            for (int i = 0; i < snows.Count; i++)
+            {
+                Gl.glPushMatrix();
+               // выполняем перемещение частицы в необходимую позицию
+                Gl.glTranslated(snows[i].GetPositionX(), snows[i].GetPositionY(), snows[i].GetPositionZ());
+                // масштабируем ее в соотвествии с ее размером
+                Gl.glScalef(size, size, size);
+                // вызываем дисплейный список для отрисовки частицы из кеша видеоадаптера
+                Gl.glCallList(DisplayListNom);
+                // возвращаем матрицу
+                Gl.glPopMatrix();
+            }
+        }
+
+        private void UpdateAndDraw(float CurTime)
+        {
+
+            int randCount = rand.Next(1, 40);
+            Add(randCount);
+            for(int i = 0; i < snows.Count ; i ++)
+            {
+                snows[i].UpdatePosition(CurTime);
                 Gl.glPushMatrix();
                 // получаем размер частицы
-                float size = 9f;
-
+                
                 // выполняем перемещение частицы в необходимую позицию
                 Gl.glTranslated(snows[i].GetPositionX(), snows[i].GetPositionY(), snows[i].GetPositionZ());
                 // масштабируем ее в соотвествии с ее размером
@@ -71,19 +100,16 @@ namespace SnowRain
                 Gl.glCallList(DisplayListNom);
                 // возвращаем матрицу
                 Gl.glPopMatrix();
-
                 if(snows[i].GetPositionY() < 0)
                 {
                     snows.RemoveAt(i);
                 }
             }
-
-            
         }
 
         public void Draw(float CurTime)
         {
-            Update(CurTime);
+            UpdateAndDraw(CurTime);
             return;
         }
 
@@ -91,26 +117,14 @@ namespace SnowRain
         {
             // генерация дисплейног осписка
             DisplayListNom = Gl.glGenLists(1);
-            float[] Color = { 0.001f, 0.001f, 0.4f, 1 };
+            float[] Color = { 1f, 0.7f, 0.7f, .5f };
             // начало создания списка
             Gl.glNewList(DisplayListNom, Gl.GL_COMPILE);
             // Gl.glColor3b(0, 0, 255);
-            Gl.glColor3d(0, 0, 255);
+           // Gl.glColor3d(0, 0, 255);
             Gl.glMaterialfv(Gl.GL_FRONT_AND_BACK, Gl.GL_AMBIENT_AND_DIFFUSE, Color);
-            // редим отрисовки треугольника
-            try
-            {
-
-
-                Glut.glutSolidSphere(0.01f, 10, 10);
-            }
-            catch(Exception e)
-            {
-                int i = 0;
-            }
-            // завершаем отрисовку частицы
+            Glut.glutSolidSphere(0.01f, 10, 10);
             Gl.glEndList();
-
             // флаг - дисплейный список создан
             isDisplayList = true;
         }

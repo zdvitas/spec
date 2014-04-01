@@ -14,9 +14,16 @@ namespace SnowRain
             snow = new Snow_System();
         }
 
-        public void Draw(float CurTime)
+        public void Draw(float CurTime, bool paused)
         {
-            snow.Draw(CurTime);
+            if (paused)
+            {
+                snow.DrawOnly();
+            }
+            else
+            {
+                snow.Draw(CurTime);
+            }
         }
     }
 }

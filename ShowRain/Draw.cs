@@ -12,10 +12,12 @@ namespace SnowRain
         {
             scene = new Scene();
         }
-        public void Do(float curTime)
+        public void Do(float curTime,  bool paused)
         {
-            scene.Draw(curTime);
+            scene.Draw(curTime, paused);
         }
+
+
 
     }
 }

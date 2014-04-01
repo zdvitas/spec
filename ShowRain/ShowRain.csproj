@@ -119,7 +119,8 @@
     <Compile Include="Ice_particle.cs" />
     <Compile Include="moveble_particle.cs" />
     <Compile Include="Particle.cs" />
-    <Compile Include="Partilce.cs" />
+    <Compile Include="Physycs\Collision.cs" />
+    <Compile Include="Physycs\Collison_control.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Tower.cs" />
     <Compile Include="Water_particle.cs" />
     <Compile Include="Wire.cs" />
+    <Compile Include="Wire_part.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -144,8 +146,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
